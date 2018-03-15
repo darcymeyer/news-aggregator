@@ -1,0 +1,24 @@
+So we're going to need to organize everything for it to be useful
+
+WHen a big event happens, lots of different sources report on it
+
+So, we need to aggregate articles about the same story into the same place
+
+So we need IBM Watson to determine what keywords a story is about
+
+Our scripts will look at all the topics the results are about, and if there are a lot on the same thing, and published around the same date, it will group them together
+(YES!)
+
+When some story topic reaches a critical mass of popularity (maybe also scrape Twitter?) it sends a notification
+
+
+Now, how to group this in the JSON response?
+
+
+Hmm...
+
+
+So we'll have a key "Breaking" and under that will be story topics
+  and under each story topic will be a processed and coagulated summary (that is text) of what's going on, taken from the sources
+  and alongside that will be all the story objects
+

@@ -1,2 +1,4 @@
 *.swp
 *.pyc
+now.txt
+django/news/db.sqlite3
