@@ -1,0 +1,13 @@
+Two parts: Django on a server and Cordova on a phone
+
+Django
+Actually does the aggregating and processing
+Always running
+Has an API that the Cordova queries
+Periodically checks RSS feeds and puts it into a template that it serves up on the API
+
+Cordova
+Simple front-facing thing on the phone
+Just queries the Django API for the latest update
+  This should be fast since it should already have been aggregated, and it just has to be served
+Has a summary on the app ()

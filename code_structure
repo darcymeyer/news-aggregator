@@ -1,0 +1,6 @@
+FOR NOW: we're using a pre-written fast&cheap text summarizer
+LATER: we may write our own summarizer (or learn how to use IBM Watson)
+
+Just download a github thing for summarization
+
+Start the django !
