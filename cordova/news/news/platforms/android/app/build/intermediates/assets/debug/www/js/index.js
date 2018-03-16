@@ -17,20 +17,20 @@
  * under the License.
  */
 
-$( ".summary" ).click(function() {
-    if (!$(this).hasClass("open")) {
-        var prev = $(this).parent().parent().find(".open");
-        prev.parent().find(".sources").slideUp(150);
-        prev.removeClass("open");
-        var next = $(this).parent().find(".sources");
-        next.slideDown(150);
-        $(this).addClass("open");
-    } else {
-        var curr = $(this).parent().find(".sources");
-        curr.slideUp(150);
-        curr.parent().find(".summary").removeClass("open");
-    }
-});
+// $( ".summary" ).click(function() {
+//     if (!$(this).hasClass("open")) {
+//         var prev = $(this).parent().parent().find(".open");
+//         prev.parent().find(".sources").slideUp(150);
+//         prev.removeClass("open");
+//         var next = $(this).parent().find(".sources");
+//         next.slideDown(150);
+//         $(this).addClass("open");
+//     } else {
+//         var curr = $(this).parent().find(".sources");
+//         curr.slideUp(150);
+//         curr.parent().find(".summary").removeClass("open");
+//     }
+// });
 
 var app = {
     // Application Constructor
@@ -48,15 +48,20 @@ var app = {
 
     // Update DOM on a Received Event
     receivedEvent: function(id) {
-        var parentElement = document.getElementById(id);
-        var listeningElement = parentElement.querySelector('.listening');
-        var receivedElement = parentElement.querySelector('.received');
+        // var parentElement = document.getElementById(id);
+        // var listeningElement = parentElement.querySelector('.listening');
+        // var receivedElement = parentElement.querySelector('.received');
 
-        listeningElement.setAttribute('style', 'display:none;');
-        receivedElement.setAttribute('style', 'display:block;');
+        // listeningElement.setAttribute('style', 'display:none;');
+        // receivedElement.setAttribute('style', 'display:block;');
 
-        console.log('Received Event: ' + id);
+        // console.log('Received Event: ' + id);
     }
 };
 
 app.initialize();
+
+$(document).ready(function() {
+    _getNews(process);
+});
+
