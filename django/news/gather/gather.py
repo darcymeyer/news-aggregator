@@ -21,7 +21,23 @@ dummydata = {
 				},
 				{
 					'source': "BBC",
-					'articlelink': "https://bbc.com",
+					'articlelink': "https://bbc.co.uk",
+					'summary': "some more lines of summary of this article"
+				}
+			]
+		},
+		{
+			'title': "Election in Europe",
+			'brief': "some country is having an election",
+			'sources': [
+				{
+					'source': "BBC",
+					'articlelink': "https://bbc.co.uk",
+					'summary': "some few lines of summary of the article"
+				},
+				{
+					'source': "NYT",
+					'articlelink': "https://nyt.com",
 					'summary': "some more lines of summary of this article"
 				}
 			]
@@ -42,6 +58,7 @@ def gather():
 	# return all_things#dummyobject
 	# pass
 	# this is where we're going to do the processing n stuff
+	all_things = dummydata # REMOVE FOR PRODUCTION
 	with open('now.txt', 'w') as f:
 		f.write(json.dumps(all_things))
 
@@ -71,7 +88,7 @@ def summarize(text):
 
 
 if __name__=="__main__":
-	with open("gather/sources.txt", 'r') as f:
+	with open("sources.txt", 'r') as f:
 		lines = f.readlines()
 		global SOURCES
 		SOURCES = [s.split(" ") for s in lines]
