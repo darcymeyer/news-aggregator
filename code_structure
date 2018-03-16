@@ -1,8 +1,0 @@
-FOR NOW: we're using a pre-written fast&cheap text summarizer
-LATER: we may write our own summarizer (or learn how to use IBM Watson)
-
-Just download a github thing for summarization
-
-Start the django !
-
-OK now even though it's a really rough version, make the Cordova app as proof of concept, and it will be easier to adapt after a basic thing is written
