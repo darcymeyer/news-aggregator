@@ -7,11 +7,36 @@ from bs4 import BeautifulSoup
 import json
 import re
 
+
+dummydata = {
+	'stories': [
+		{
+			'title': "Vulnerability discovered",
+			'brief': "there was a Vulnerability discovered in such and such software",
+			'sources': [
+				{
+					'source': "Wired",
+					'articlelink': "https://wired.com",
+					'summary': "some few lines of summary of the article"
+				},
+				{
+					'source': "BBC",
+					'articlelink': "https://bbc.com",
+					'summary': "some more lines of summary of this article"
+				}
+			]
+		}
+
+	]
+}
+
+
 def gather():
 	'''Main function for gathering. Called periodically.'''
 	all_things = {}
-	for url, handler, sourcename in RSS_SOURCES:
-		result = handler(url)
+	for sourcename, url, handler in SOURCES:
+		func = eval(handler) # This is just a personal app, so I don't think this is insecure
+		result = func(url)
 		all_things[sourcename] = result
 	# dummyobject = {"title1":"useful info", "title2":"more useful info"}
 	# return all_things#dummyobject
@@ -43,13 +68,13 @@ def summarize(text):
 	'''takes a block of text and returns a 3-sentence summary'''
 	pass# just use a small thing from github. the https://github.com/lekhakpadmanabh/Summarizer/tree/master/smrzr thing.
 
-# disclaimer: may not all be rss sources
-# also: seems neater if this is read from a file..........
-RSS_SOURCES = [("https://www.wired.com/feed/category/security/latest/rss", wired_handler, "WIRED Security"), 
-				("https://www.wired.com/feed/category/business/latest/rss", wired_handler, "WIRED Business")]
 
 
 if __name__=="__main__":
+	with open("gather/sources.txt", 'r') as f:
+		lines = f.readlines()
+		global SOURCES
+		SOURCES = [s.split(" ") for s in lines]
 	gather()
 
 

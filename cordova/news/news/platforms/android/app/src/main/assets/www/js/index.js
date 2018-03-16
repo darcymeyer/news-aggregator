@@ -16,6 +16,22 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+
+$( ".summary" ).click(function() {
+    if (!$(this).hasClass("open")) {
+        var prev = $(this).parent().parent().find(".open");
+        prev.parent().find(".sources").slideUp(150);
+        prev.removeClass("open");
+        var next = $(this).parent().find(".sources");
+        next.slideDown(150);
+        $(this).addClass("open");
+    } else {
+        var curr = $(this).parent().find(".sources");
+        curr.slideUp(150);
+        curr.parent().find(".summary").removeClass("open");
+    }
+});
+
 var app = {
     // Application Constructor
     initialize: function() {

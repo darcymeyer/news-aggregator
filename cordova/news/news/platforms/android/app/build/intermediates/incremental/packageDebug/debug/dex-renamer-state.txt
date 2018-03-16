@@ -1,0 +1,4 @@
+#Thu Mar 15 20:58:46 EDT 2018
+base.0=/Users/DarcyMeyer/Projects/News-Aggregator/cordova/news/news/platforms/android/app/build/intermediates/transforms/dexMerger/debug/0
+renamed.0=classes.dex
+file.0=/Users/DarcyMeyer/Projects/News-Aggregator/cordova/news/news/platforms/android/app/build/intermediates/transforms/dexMerger/debug/0/classes.dex

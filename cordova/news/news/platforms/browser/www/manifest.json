@@ -1,0 +1,17 @@
+{
+  "background_color": "#FFF",
+  "display": "standalone",
+  "name": "News",
+  "short_name": "News",
+  "version": "com.meyer_industries.news",
+  "description": "A sample Apache Cordova application that responds to the deviceready event.",
+  "author": "Meyer Industries",
+  "icons": [
+    {
+      "src": "res/news_icon.png",
+      "type": "image/png",
+      "sizes": "undefinedxundefined"
+    }
+  ],
+  "start_url": "index.html"
+}
