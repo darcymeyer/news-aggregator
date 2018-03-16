@@ -16,11 +16,13 @@ dummydata = {
 			'sources': [
 				{
 					'source': "Wired",
+					'articletitle': "Researchers find Vulnerability",
 					'articlelink': "https://wired.com",
 					'summary': "some few lines of summary of the article"
 				},
 				{
 					'source': "BBC",
+					'articletitle': "Oxford research group discovers Vulnerability",
 					'articlelink': "https://bbc.co.uk",
 					'summary': "some more lines of summary of this article"
 				}
@@ -32,11 +34,13 @@ dummydata = {
 			'sources': [
 				{
 					'source': "BBC",
+					'articletitle': "European country election this Tuesday",
 					'articlelink': "https://bbc.co.uk",
 					'summary': "some few lines of summary of the article"
 				},
 				{
 					'source': "NYT",
+					'articletitle': "Close race for European country election",
 					'articlelink': "https://nyt.com",
 					'summary': "some more lines of summary of this article"
 				}
