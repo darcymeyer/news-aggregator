@@ -12,9 +12,11 @@ function addStory(story) {
 		console.log("SOURCE:", source)
 		var st = '<tr>'+
                     '<td>'+
-                        '<h4>'+source['articletitle']+'</h4>'+
-                        '<p><a href="'+source['articlelink']+'">'+source['source']+'</a></p>'+
-                        '<p>'+source['summary']+'</p>'+
+                        '<h4>'+source['title']+'</h4>'+
+                        '<p><a href="'+source['link']+'">'+source['source']+'</a> '+
+                            '<span style=color:#AAA>'+source['pubdate']+"</span>"+
+                        '</p>'+
+                        '<p>'+source['blurb']+'</p>'+
                     '</td>'+
                 '</tr>';
         sourcetext = sourcetext+st;
@@ -36,8 +38,4 @@ function addStory(story) {
             '</div>'+
         '</div>'
 		)
-}
-
-function addSource() {
-
 }
