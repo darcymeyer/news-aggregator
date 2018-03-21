@@ -39,7 +39,7 @@ def WIRED_scraper(url):
 def NYT_scraper(url):
 	def NYT_text_getter(url): # this works don't change it
 		whole = ''
-		soup = BeautifulSoup(requests.get(url).text)
+		soup = BeautifulSoup(requests.get(url).text, "html5lib")
 		a = soup.find_all(attrs={'class':'story-body-text story-content'})
 		result = '\n'.join([e.text for e in a])
 		return result
