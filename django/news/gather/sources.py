@@ -1,0 +1,22 @@
+sources = {
+    "NYT Business": "https://rss.nytimes.com/services/xml/rss/nyt/Business.xml",
+    "NYT Economy": "https://rss.nytimes.com/services/xml/rss/nyt/Economy.xml",
+    "NYT Africa": "https://rss.nytimes.com/services/xml/rss/nyt/Africa.xml",
+    "NYT Middle East": "https://rss.nytimes.com/services/xml/rss/nyt/MiddleEast.xml",
+    "NYT World": "https://rss.nytimes.com/services/xml/rss/nyt/World.xml",
+    "NYT Politics": "https://rss.nytimes.com/services/xml/rss/nyt/Politics.xml",
+    "NYT Home Page": "https://rss.nytimes.com/services/xml/rss/nyt/HomePage.xml",
+    # "WSJ Markets": "https://www.wsj.com/xml/rss/3_7031.xml",
+    # "WSJ US Business": "https://www.wsj.com/xml/rss/3_7014.xml",
+    # "WSJ World News": "https://www.wsj.com/xml/rss/3_7085.xml",
+    # "Bloomberg LP": "https://www.bloomberg.com/company/feed/",
+    # "Bloomberg Politics": "https://www.bloomberg.com/politics/feeds/site.xml",
+    # "BBC Home": "https://feeds.bbci.co.uk/news/rss.xml",
+    # "BBC World": "https://feeds.bbci.co.uk/news/world/rss.xml",
+    # "BBC Business": "https://feeds.bbci.co.uk/news/business/rss.xml",
+    # "BBC UK Politics": "https://feeds.bbci.co.uk/news/politics/rss.xml",
+    # "BBC Technology": "https://feeds.bbci.co.uk/news/technology/rss.xml",
+    # "Recode": "https://www.recode.net/rss/current",
+    # "WIRED Security": "https://www.wired.com/feed/category/security/latest/rss",
+    # "WIRED Business": "https://www.wired.com/feed/category/business/latest/rss"
+}

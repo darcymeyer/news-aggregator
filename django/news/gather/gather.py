@@ -1,12 +1,14 @@
 # does the gathering
 
-# let's try to stick to RSS feeds
-
 import requests
 from bs4 import BeautifulSoup
 import json
 import re
+from datetime import datetime, timedelta
 
+from sources import sources # imports dict of rss feeds
+from source_scrapers import * # imports functions to scrape different feeds
+import organize
 
 dummydata = {
 	'stories': [
@@ -51,58 +53,43 @@ dummydata = {
 }
 
 
+# def gather():
+# 	'''Main function for gathering. Called periodically.'''
+# 	all_things = {'stories':[]}
+# 	for sourcename, url, handler in SOURCES:
+# 		func = eval(handler) # This is just a personal app, so I don't think this is insecure
+# 		results = func(url)
+# 		all_things['stories'] += results
+# 	# this is where we're going to do the processing n stuff
+# 	global at
+# 	at = all_things
+# 	organized = dummydata # REMOVE FOR PRODUCTION
+# 	# organized = organize(all_things)
+# 	with open('now.txt', 'w') as f:
+# 		f.write(json.dumps(organized))
+
 def gather():
-	'''Main function for gathering. Called periodically.'''
-	all_things = {}
-	for sourcename, url, handler in SOURCES:
-		func = eval(handler) # This is just a personal app, so I don't think this is insecure
-		result = func(url)
-		all_things[sourcename] = result
-	# dummyobject = {"title1":"useful info", "title2":"more useful info"}
-	# return all_things#dummyobject
-	# pass
-	# this is where we're going to do the processing n stuff
-	all_things = dummydata # REMOVE FOR PRODUCTION
+	everything = []
+	for source in sources:
+		sourcename = source.split(" ")[0]
+		scraper = eval(sourcename+"_scraper")
+		everything += scraper(sources[source]) # sources[source] is the url
+	organized = organize.organize(everything)
 	with open('now.txt', 'w') as f:
-		f.write(json.dumps(all_things))
-
-def wired_handler(url):
-	r = requests.get(url)
-	soup = BeautifulSoup(r.text, "html5lib")
-	result = {}
-	stories = soup.find_all("item")
-	for story in stories:
-		title = story.find("title").string
-		desc = story.find("description").string
-		link = re.findall('(?<=<link/>).*?(?=<guid)', str(story))[0]
-		pubdate = story.find("pubdate").string
-		mediaurl = story.find("media:thumbnail").get("url")
-		summary = summarize("the text")
-		result[title] = {"desc":desc, "pubdate":pubdate, "mediaurl":mediaurl}
-	# print r.text
-	global s 
-	s= soup
-	return result#r.text#None
-
-
-def summarize(text):
-	'''takes a block of text and returns a 3-sentence summary'''
-	pass# just use a small thing from github. the https://github.com/lekhakpadmanabh/Summarizer/tree/master/smrzr thing.
-
+		f.write(json.dumps(organized))
 
 
 if __name__=="__main__":
-	with open("sources.txt", 'r') as f:
-		lines = f.readlines()
-		global SOURCES
-		SOURCES = [s.split(" ") for s in lines]
+	# with open("sources.txt", 'r') as f:
+	# 	lines = f.readlines()
+	# 	global SOURCES
+	# 	SOURCES = [s.split(" ") for s in lines]
 	gather()
 
 
 # TODO: FILTERING or else it's not gonna be useful
 # ALSO checking for updates and notifying of new stories
 
-# going to need some major organizing...
 # we're gonna need some Watson for extracting article topics and coagulating them... proper nouns and stuff
 
 
