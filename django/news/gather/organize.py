@@ -11,16 +11,17 @@ from sklearn.preprocessing import normalize
 
 
 def cleaner(text):
-	bad = re.compile("[,.'`]")
-	eng_stopwords = stopwords.words('english')
-	text = text.lower().replace(u'\u2019', "'").replace(u'\u2018', "'").replace(u'\u201c', '"').replace(u'\u201d', '"')
-	text = re.sub(bad, "", text)
-	words = nltk.word_tokenize(text)
-	words = [re.sub(bad, "", word) for word in words]
-	words_cleaned = ' '.join([word for word in words if word not in string.punctuation 
-			and word not in eng_stopwords+[u'\u2014', "nt"]
-			and not word.isdigit()])
-	return words_cleaned
+    bad = re.compile("[,.'`]")
+    eng_stopwords = stopwords.words('english')
+    text = text.replace(u'\u2019', "'").replace(u'\u2018', "'").replace(u'\u201c', '"').replace(u'\u201d', '"')
+    words = nltk.word_tokenize(text)
+    words = [w.lower() for w in words if w[0] in "QWERTYUIOPASDFGHJKLZXCVBNM"]
+    words = [re.sub(bad, "", word) for word in words]
+    words_cleaned = ' '.join([word for word in words if word not in string.punctuation 
+            and word not in eng_stopwords+[u'\u2014', "nt"]
+#             and not word.isdigit() # should be taken care of by checking for capital case
+            and not word==""])
+    return words_cleaned
 
 
 def organize(lst):

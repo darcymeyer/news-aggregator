@@ -17,6 +17,6 @@ sources = {
     # "BBC UK Politics": "https://feeds.bbci.co.uk/news/politics/rss.xml",
     # "BBC Technology": "https://feeds.bbci.co.uk/news/technology/rss.xml",
     # "Recode": "https://www.recode.net/rss/current",
-    # "WIRED Security": "https://www.wired.com/feed/category/security/latest/rss",
-    # "WIRED Business": "https://www.wired.com/feed/category/business/latest/rss"
+    "WIRED Security": "https://www.wired.com/feed/category/security/latest/rss",
+    "WIRED Business": "https://www.wired.com/feed/category/business/latest/rss"
 }

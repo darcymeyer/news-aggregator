@@ -6,9 +6,11 @@ import json
 import re
 from datetime import datetime, timedelta
 
-from sources import sources # imports dict of rss feeds
+# from sources import sources # imports dict of rss feeds
 from source_scrapers import * # imports functions to scrape different feeds
 import organize
+
+from tqdm import tqdm
 
 dummydata = {
 	'stories': [
@@ -53,41 +55,44 @@ dummydata = {
 }
 
 
-# def gather():
-# 	'''Main function for gathering. Called periodically.'''
-# 	all_things = {'stories':[]}
-# 	for sourcename, url, handler in SOURCES:
-# 		func = eval(handler) # This is just a personal app, so I don't think this is insecure
-# 		results = func(url)
-# 		all_things['stories'] += results
-# 	# this is where we're going to do the processing n stuff
-# 	global at
-# 	at = all_things
-# 	organized = dummydata # REMOVE FOR PRODUCTION
-# 	# organized = organize(all_things)
-# 	with open('now.txt', 'w') as f:
-# 		f.write(json.dumps(organized))
+current_sources = "the-new-york-times,bbc-news,wired,politico,cbs-news,cnn,the-guardian-uk"
+srcs = current_sources.split(",")
+api_key = "f3dc0127c680461698cba88df56f323b"
+headers={"X-Api-Key":api_key}
+data={
+      "pageSize":30,
+      "language":"en",
+     }
 
 def gather():
-	everything = []
-	for source in sources:
-		sourcename = source.split(" ")[0]
-		scraper = eval(sourcename+"_scraper")
-		everything += scraper(sources[source]) # sources[source] is the url
-	organized = organize.organize(everything)
-	with open('now.txt', 'w') as f:
-		f.write(json.dumps(organized))
+    allarticles = []
+    for s in tqdm(srcs):
+        data['sources'] = s
+        r = requests.get("https://newsapi.org/v2/everything", headers=headers, params=data)
+        for art in tqdm(r.json()['articles']):
+            # just make a new dict
+            getter = eval(s.title().replace("-","")+"_text_getter")
+            art_text = getter(art['url'])
+            if art_text:
+                d = {
+                    "title":art['title'],
+                    "blurb":art['description'],
+                    "source":art['source']['name'],
+                    "pubdate":art['publishedAt'],
+                    "link":art['url'],
+                    "text":art_text
+                }
+                allarticles.append(d)
+    organized = organize.organize(allarticles) # orig. organize.organize()
+    with open('now.txt', 'w') as f:
+        f.write(json.dumps(organized))
 
 
 if __name__=="__main__":
-	# with open("sources.txt", 'r') as f:
-	# 	lines = f.readlines()
-	# 	global SOURCES
-	# 	SOURCES = [s.split(" ") for s in lines]
 	gather()
 
 
-# TODO: FILTERING or else it's not gonna be useful
+# TODO: (BETTER) FILTERING or else it's not gonna be useful
 # ALSO checking for updates and notifying of new stories
 
 # we're gonna need some Watson for extracting article topics and coagulating them... proper nouns and stuff

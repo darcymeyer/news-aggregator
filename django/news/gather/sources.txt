@@ -1,2 +1,0 @@
-WIRED_Security https://www.wired.com/feed/category/security/latest/rss wired_handler
-WIRED_Business https://www.wired.com/feed/category/business/latest/rss wired_handler
